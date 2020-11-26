@@ -9,6 +9,9 @@ UI:
 - ng prime with one dark and one light theme.
 - chart drill downn. When a drill down clicked => 
     another chart shows up underneath.
+- angular statistics google acount.
+
+
 
 
 

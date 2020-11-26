@@ -30,44 +30,21 @@ export class HomeComponent implements OnInit {
 
   yAxis: {
       title: {
-          text: 'Number of Employees'
+          text: 'Number of Deathss'
       }
   },
 
   xAxis: {
-      accessibility: {
-          rangeDescription: 'Range: 2010 to 2017'
-      }
+      categories: [],
   },
 
   legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle'
+      layout: 'horizontal',
+      align: 'center',
+      verticalAlign: 'bottom'
   },
 
-  plotOptions: {
-      series: {
-          label: {
-              connectorAllowed: false
-          },
-          pointStart: 2010
-      }
-  },
-
-  series: [{
-      name: 'Brooklyn',
-      data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-  }, {
-      name: 'Bronx',
-      data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-  }, {
-      name: 'Manhattan',
-      data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-  }, {
-      name: 'Staten Island',
-      data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-  }],
+  series: [],
 
   responsive: {
       rules: [{
@@ -85,19 +62,40 @@ export class HomeComponent implements OnInit {
   }
   };
 
+  months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
   
   constructor(private apiService: ApiService) { }
 
   ngOnInit(){
     this.getData();
-    Highcharts.chart('container', this.options);
   }
 
   getData(){
     this.apiService.getData().subscribe(data => {
-      for(let i = 0; i < data.length; i++){
-        console.log(data[i]);
-      }
+        let bk = { name: 'Brooklyn', data: Array<number>() }
+        let bx = { name: 'Bronx',    data: Array<number>() }
+        let mnh = {name: 'Manhattan',data: Array<number>() }
+        let si = { name: 'Staten Island',  data: Array<number>() }
+
+        for(let obj of data){
+
+            let date = new Date(obj['date_of_interest']);
+            let dateFormat = this.months[date.getMonth()] + ' ' + date.getDate() + ' ' + date.getFullYear(); 
+            this.options.xAxis.categories.push(dateFormat);
+            
+            bk.data.push(obj['bk_death_count']);
+            bx.data.push(parseInt(obj['bx_death_count']));
+            mnh.data.push(parseInt(obj['mn_death_count']));
+            si.data.push(parseInt(obj['si_death_count']));
+
+        }
+        this.options.series.push(bk);
+        this.options.series.push(bx);
+        this.options.series.push(mnh);
+        this.options.series.push(si);
+        console.log(this.options);
+        Highcharts.chart('container', this.options);
     });
   }
 

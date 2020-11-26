@@ -73,10 +73,12 @@ export class HomeComponent implements OnInit {
     this.apiService.getData().subscribe(data => {
         let bk = { name: 'Brooklyn', data: Array<number>() }
         let bx = { name: 'Bronx',    data: Array<number>() }
-        let mn = {name: 'Manhattan',data: Array<number>() }
+        let mn = { name: 'Manhattan',data: Array<number>() }
+        let qn = { name: 'Queens',data: Array<number>() }
         let si = { name: 'Staten Island',  data: Array<number>() }
 
         for(let obj of data){
+            console.log(obj);
 
             let date = new Date(obj['date_of_interest']);
             let dateFormat = this.months[date.getMonth()] + ' ' + date.getDate() + ' ' + date.getFullYear(); 
@@ -85,12 +87,15 @@ export class HomeComponent implements OnInit {
             bk.data.push(+obj['bk_death_count']);
             bx.data.push(+(obj['bx_death_count']));
             mn.data.push(+(obj['mn_death_count']));
+            qn.data.push(+(obj['qn_death_count']));
             si.data.push(+(obj['si_death_count']));
 
         }
+
         this.options.series.push(bk);
         this.options.series.push(bx);
         this.options.series.push(mn);
+        this.options.series.push(qn);
         this.options.series.push(si);
         
         this.chart = Highcharts.chart('container', this.options);

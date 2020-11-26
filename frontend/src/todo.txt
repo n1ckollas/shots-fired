@@ -1,0 +1,13 @@
+When can we set it online?
+UI:
+- add the deadliness statistic = case count to death count ratio
+- Interactive chart with zoom strip in the bottom to zoom on dates.
+- Separate chart for case_count
+- 
+
+
+
+DEPLOY:
+- setup the aws.
+- get a  domain.
+- 

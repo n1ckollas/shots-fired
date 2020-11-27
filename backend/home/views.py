@@ -36,6 +36,7 @@ class Home(APIView):
         series.append(mn)
         series.append(qn)
         series.append(si)
+        
+        data_set = {"categories": categories, "series":series}
 
-        data_set = { "categories": categories, "series":series }
         return Response(data_set)

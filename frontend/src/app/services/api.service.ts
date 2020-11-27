@@ -4,6 +4,11 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+export interface IHomeScreenData {
+  categories: string[];
+  series: object[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,9 +17,13 @@ export class ApiService {
   constructor(private http:HttpClient) { }
 
   getData(){
-   return this.http.get<[]>("http://localhost:8000").pipe(
+   return this.http.get<IHomeScreenData>("http://localhost:8000").pipe(
      catchError((error) => {
-        return of([]);
+       const result:IHomeScreenData = {
+         categories: [],
+         series: [],
+       }
+        return of(result);
       })
     )
   }

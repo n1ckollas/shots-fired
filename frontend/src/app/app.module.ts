@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    PrimeNgModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

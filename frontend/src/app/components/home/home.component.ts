@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   public options: any = {
     title: {
-      text: 'Covid 19 statistics for the city of New York'
+      text: ''
   },
 
   yAxis: {
@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit {
     this.apiService.getData().subscribe(data => {
         this.options.series = data.series;
         this.options.xAxis.categories = data.categories;       
-        this.chart = Highcharts.chart('container', this.options);
+        this.chart = Highcharts.chart('chart-container', this.options);
     });
   }
 

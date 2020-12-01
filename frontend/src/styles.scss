@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
-body{
+body, html{
     margin:0;
+    
+    &.bootstrap4-light-blue-theme { 
+        color: var(--text-color);
+        background: var(--surface-d);
+    }
+    &.bootstrap4-dark-blue-theme { 
+        color: var(--text-color);
+        background: var(--surface-d);
+    }
+    &.arya-blue-theme {
+        color: var(--text-color);
+        background: var(--surface-b);
+    }
 }

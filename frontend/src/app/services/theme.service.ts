@@ -5,7 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class ThemeService {
   ls = localStorage;
-  defaultTheme = 'bootstrap-light-blue';
+  // defaultTheme = 'arya-blue';
+  // defaultTheme = 'bootstrap4-light-blue';
+  defaultTheme = 'bootstrap4-dark-blue';
 
   constructor() {
     this.setTheme(this.defaultTheme);
@@ -17,8 +19,8 @@ export class ThemeService {
 
   setTheme(theme: string) {
     this.ls.setItem('theme', theme);
-    // const linkTag: any = document.getElementById('theme');
-    // linkTag.href = `assets/${theme}/theme.css`;
+    const linkTag: any = document.getElementById('theme');
+    linkTag.href = `assets/${theme}/theme.css`;
     document.querySelector('body').className = `${theme}-theme`;
   }
 }

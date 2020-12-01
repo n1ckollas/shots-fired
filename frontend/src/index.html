@@ -6,6 +6,11 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="" id="theme">
+  <script type="text/javascript">
+    const theme = localStorage.getItem("theme");
+    document.getElementById('theme').href = theme ? `assets/${theme}/theme.css` : `assets/bootstrap-light-blue/theme.css`;
+  </script>
 </head>
 <body>
   <app-root></app-root>

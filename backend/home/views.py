@@ -15,9 +15,9 @@ class Home(APIView):
         categories = []
         series = []
 
-        bk = { 'name': 'Brooklyn', 'data': [] }
-        bx = { 'name': 'Bronx',    'data': [] }
-        mn = { 'name': 'Manhattan','data': [] }
+        bk = { 'name': 'Brooklyn',       'data': [] }
+        bx = { 'name': 'Bronx',          'data': [] }
+        mn = { 'name': 'Manhattan',      'data': [] }
         qn = { 'name': 'Queens',         'data': [] }
         si = { 'name': 'Staten Island',  'data': [] }
 
@@ -36,7 +36,7 @@ class Home(APIView):
         series.append(mn)
         series.append(qn)
         series.append(si)
-        
+
         data_set = {"categories": categories, "series":series}
 
         return Response(data_set)

@@ -1,17 +1,21 @@
 When can we set it online?
 UI:
-- navi
 - themes
+    - ng prime with one dark and one light theme.
+
 
 - add the deadliness statistic = case count to death count ratio
 - Interactive chart with zoom strip in the bottom to zoom on dates.
 - Separate chart for case_count
-- Data base for Covid 19 outcomes by testing cohorts.
+- Data base for "Covid 19 outcomes by testing cohorts".
 - Separate component for chart.
-- navi
-- ng prime with one dark and one light theme.
+    - optional master chart.
 - chart drill down. When a drill down clicked => another chart shows up underneath.
 - angular statistics google acount.
+
+BACKEND:
+ setup celery and redis for periodic pulling for the 
+ email subscription.
 
 
 

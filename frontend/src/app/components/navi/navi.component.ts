@@ -17,10 +17,11 @@ export class NaviComponent implements OnInit {
           {
               label: 'Home',
               url:'/',
+              icon: 'pi pi-home'
           },
           {
               label: 'Death Count', 
-              icon: 'pi pi-fw pi-pencil',
+              icon: 'pi pi-user-minus',
               url: 'death-count',
           }
       ];

@@ -7,16 +7,13 @@ UI:
 - Separate component for chart.
 - navi
 - ng prime with one dark and one light theme.
-- chart drill downn. When a drill down clicked => 
+- chart drill down. When a drill down clicked => 
     another chart shows up underneath.
 - angular statistics google acount.
 
 
 
-
-
-
 DEPLOY:
 - setup the aws.
-- get a  domain.6
+- get a  domain.
 - 

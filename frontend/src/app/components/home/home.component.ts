@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService, IHomeScreenData } from 'src/app/services/api.service';
 
 import * as Highcharts from 'highcharts';
+import darkBlue from 'highcharts/themes/dark-blue'
+import darkUnica from 'highcharts/themes/dark-unica'
+
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -10,7 +13,7 @@ let More = require('highcharts/highcharts-more');
 Boost(Highcharts);
 noData(Highcharts);
 More(Highcharts);
-noData(Highcharts);
+noData(Highcharts)
 
 @Component({
   selector: 'app-home',
@@ -18,6 +21,7 @@ noData(Highcharts);
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
 
   public options: any = {
     title: {
@@ -59,16 +63,18 @@ export class HomeComponent implements OnInit {
   };
 
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  chart:any;
+  chart;
 
   
   constructor(private apiService: ApiService) { }
 
   ngOnInit(){
-    this.getData();
+      this.getData();
   }
 
   getData(){
+    // darkBlue(Highcharts);
+    darkUnica(Highcharts);
     this.apiService.getData().subscribe(data => {
         this.options.series = data.series;
         this.options.xAxis.categories = data.categories;       

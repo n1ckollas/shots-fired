@@ -1,3 +1,7 @@
-<p-card header="Covid-19 statistics for the city of New York.">
-    <div id="chart-container"></div>
-</p-card>
+<div [ngStyle]="{'visibility' : show ? 'visible' : 'hidden'}">
+    <p-card  header="Covid-19 statistics for the city of New York.">
+        <div id="chart-container"></div>
+    </p-card>
+</div>
+
+<button (click)="update()">Redraw</button>

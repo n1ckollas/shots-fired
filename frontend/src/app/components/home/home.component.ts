@@ -22,48 +22,48 @@ noData(Highcharts)
 })
 export class HomeComponent implements OnInit {
 
-
+    show = false;
   public options: any = {
     title: {
-      text: ''
-  },
+        text: ''
+    },
 
-  yAxis: {
-      title: {
-          text: 'Number of Deaths'
-      }
-  },
+    yAxis: {
+        title: {
+            text: 'Number of Deaths'
+        }
+    },
 
-  xAxis: {
-      categories: [],
-  },
+    xAxis: {
+        categories: [],
+    },
 
-  legend: {
-      layout: 'horizontal',
-      align: 'center',
-      verticalAlign: 'bottom'
-  },
+    legend: {
+        layout: 'horizontal',
+        align: 'center',
+        verticalAlign: 'bottom'
+    },
 
-  series: [],
+    series: [],
 
-  responsive: {
-      rules: [{
-          condition: {
-              maxWidth: 500
-          },
-          chartOptions: {
-              legend: {
-                  layout: 'horizontal',
-                  align: 'center',
-                  verticalAlign: 'bottom'
-              }
-          }
-      }]
-  }
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
   };
 
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  chart;
+  chart: any;
 
   
   constructor(private apiService: ApiService) { }
@@ -78,8 +78,17 @@ export class HomeComponent implements OnInit {
     this.apiService.getData().subscribe(data => {
         this.options.series = data.series;
         this.options.xAxis.categories = data.categories;       
-        this.chart = Highcharts.chart('chart-container', this.options);
+        this.chart = Highcharts.chart('chart-container', this.options, (value) => {
+            console.log(value);
+            console.log('finished');
+            this.show = true;
+        });
     });
+  }
+
+  update(){
+    this.options.title.text = "NEW TITLE"
+    Highcharts.chart('chart-container', this.options);
   }
 
 }

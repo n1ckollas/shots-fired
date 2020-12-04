@@ -13,6 +13,8 @@ UI:
 - chart drill down. When a drill down clicked => another chart shows up underneath.
 - angular statistics google acount.
 
+
+
 BACKEND:
  setup celery and redis for periodic pulling for the 
  email subscription.

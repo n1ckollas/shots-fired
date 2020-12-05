@@ -16,8 +16,9 @@ export class AppComponent {
   }
 
   openBar(event): void{
-    console.log('hi')
-    this.display  = true;
+    if(event === 'open'){
+      this.display  = true;
+    }
   }
   
 }

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { PrimeNgModule } from './prime-ng.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +22,7 @@ import { ChartComponent } from './components/chart/chart.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     PrimeNgModule,

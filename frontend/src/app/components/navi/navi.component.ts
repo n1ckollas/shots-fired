@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -8,22 +8,26 @@ import { MenuItem } from 'primeng/api';
 })
 export class NaviComponent implements OnInit {
 
+  items: MenuItem[];
+  @Output() openEvent:  EventEmitter<string> = new EventEmitter();
   constructor() { }
 
-  items: MenuItem[];
 
   ngOnInit() {
       this.items = [
-          {
-              label: 'Home',
-              url:'/',
-              // icon: 'pi pi-home'
-          },
-          {
-              label: 'Death Count', 
-              url: 'death-count',
-              // icon: 'pi pi-user-minus',
-          }
+        {
+          label: 'Home',
+          url:'/',
+        },
+        {
+          label: 'Death Count', 
+          url: 'death-count',
+        }
       ];
-    }
+  }
+
+  openSideBar() {
+    console.log('hi')
+    this.openEvent.emit('open')
+  }
 }

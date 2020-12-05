@@ -8,10 +8,16 @@ import { ThemeService } from './services/theme.service';
 })
 export class AppComponent {
 
-  constructor(private theme: ThemeService) {}
+  constructor(private themeService: ThemeService) {}
+  display = false;
 
-  setTheme(theme: string){
-    this.theme.setTheme('arya-green');
+  changeTheme(themeName: string){
+    this.themeService.setTheme(themeName);
+  }
+
+  openBar(event): void{
+    console.log('hi')
+    this.display  = true;
   }
   
 }

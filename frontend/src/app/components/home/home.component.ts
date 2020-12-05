@@ -3,7 +3,7 @@ import { ApiService, IHomeScreenData } from 'src/app/services/api.service';
 
 import * as Highcharts from 'highcharts';
 import darkBlue from 'highcharts/themes/dark-blue'
-import darkUnica from 'highcharts/themes/dark-unica'
+import darkUnica from 'highcharts/themes/high-contrast-dark'
 
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
@@ -23,44 +23,44 @@ noData(Highcharts)
 export class HomeComponent implements OnInit {
 
     show = false;
-  public options: any = {
-    title: {
-        text: ''
-    },
-
-    yAxis: {
+    public options: any = {
         title: {
-            text: 'Number of Deaths'
-        }
-    },
+            text: ''
+        },
 
-    xAxis: {
-        categories: [],
-    },
-
-    legend: {
-        layout: 'horizontal',
-        align: 'center',
-        verticalAlign: 'bottom'
-    },
-
-    series: [],
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
+        yAxis: {
+            title: {
+                text: 'Number of Deaths'
             }
-        }]
-    }
-  };
+        },
+
+        xAxis: {
+            categories: [],
+        },
+
+        legend: {
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom'
+        },
+
+        series: [],
+
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    };
 
   months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   chart: any;
@@ -88,6 +88,7 @@ export class HomeComponent implements OnInit {
 
   update(){
     this.options.title.text = "NEW TITLE"
+    darkBlue(Highcharts);
     Highcharts.chart('chart-container', this.options);
   }
 

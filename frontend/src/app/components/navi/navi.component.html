@@ -1,1 +1,5 @@
-<p-menubar [model]="items"></p-menubar>
+<p-menubar [model]="items">
+    <ng-template pTemplate="end">
+        <button pButton pRipple (click)="openSideBar()" type="button" icon="pi pi-sliders-h" class="p-button-text"></button>
+    </ng-template>
+</p-menubar>

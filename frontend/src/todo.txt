@@ -2,6 +2,7 @@ When can we set it online?
 UI:
 - themes
     - ng prime with one dark and one light theme.
+    - theme switcher.
 
 
 - add the deadliness statistic = case count to death count ratio

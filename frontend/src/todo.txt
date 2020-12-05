@@ -3,6 +3,8 @@ UI:
 - themes
     - ng prime with one dark and one light theme.
     - theme switcher.
+        - style the themes list.
+        - pair themes for the prime with chart
 
 
 - add the deadliness statistic = case count to death count ratio
@@ -25,4 +27,3 @@ BACKEND:
 DEPLOY:
 - setup the aws.
 - get a  domain.
-- 

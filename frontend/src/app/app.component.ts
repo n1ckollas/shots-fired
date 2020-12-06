@@ -9,11 +9,5 @@ import { ThemeService } from './services/theme.service';
 export class AppComponent {
 
   constructor() {}
-
-  display:boolean;
-
-  openBar(event:string): void{
-    if(event === 'open'){ this.display = true; }
-  }
   
 }

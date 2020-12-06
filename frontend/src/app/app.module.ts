@@ -12,6 +12,11 @@ import { HomeComponent } from './components/home/home.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { SlideBarComponent } from './components/slide-bar/slide-bar.component';
+import { MdChartComponent } from './components/md-chart/md-chart.component';
+import { ApiService } from './services/api.service';
+import { MasterChartComponent } from './components/md-chart/master-chart/master-chart.component';
+import { DetailChartComponent } from './components/md-chart/detail-chart/detail-chart.component';
+import { ChartService } from './services/chart.service';
 
 
 @NgModule({
@@ -21,6 +26,9 @@ import { SlideBarComponent } from './components/slide-bar/slide-bar.component';
     NaviComponent,
     ChartComponent,
     SlideBarComponent,
+    MdChartComponent,
+    MasterChartComponent,
+    DetailChartComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +39,8 @@ import { SlideBarComponent } from './components/slide-bar/slide-bar.component';
   ],
   providers: [
     ThemeService,
+    ApiService,
+    ChartService,
   ],
   bootstrap: [AppComponent]
 })

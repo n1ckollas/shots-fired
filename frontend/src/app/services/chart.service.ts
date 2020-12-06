@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-
+import { BehaviorSubject, Observable } from 'rxjs';
+export interface IChart {
+  [key: string]: any;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -91,6 +94,9 @@ export class ChartService {
         }]
     }
   };
+
+  detailChart: BehaviorSubject<IChart> = new BehaviorSubject({})
+
   constructor() { }
 
   getOptions(){
@@ -124,5 +130,12 @@ export class ChartService {
     this.options.xAxis.labels.style.color = '#000';
     this.options.legend.itemStyle.color = '#000';
     return this.options;
+  }
+
+  getDetailChartUpdates(): Observable<IChart>{
+    return this.detailChart.asObservable();
+  }
+  getDetailChart(): BehaviorSubject<IChart>{
+    return this.detailChart;
   }
 }

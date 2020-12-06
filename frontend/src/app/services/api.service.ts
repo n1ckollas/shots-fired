@@ -27,4 +27,13 @@ export class ApiService {
       })
     )
   }
+
+  getJson(){
+    const url = "https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/usdeur.json"
+    return this.http.get<[[number, number]]>(url);
+  }
+
+  test(){
+    console.log('test')
+  }
 }

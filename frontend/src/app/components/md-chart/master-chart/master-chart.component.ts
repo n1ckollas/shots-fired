@@ -50,7 +50,7 @@ export class MasterChartComponent implements OnInit {
           height:100,
           zoomType: 'x',
           events: {
-            
+
               selection: function (event) {
                   var extremesObject = event.xAxis[0],
                       min = extremesObject.min,

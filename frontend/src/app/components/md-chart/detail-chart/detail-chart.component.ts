@@ -86,7 +86,7 @@ export class DetailChartComponent implements OnInit {
               name: 'USD to EUR',
               pointStart: apiData[0][0],
               pointInterval: 24 * 3600 * 1000,
-              data: [],
+              data: apiData,
             }
       ],
 

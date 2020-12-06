@@ -1,33 +1,34 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface Theme {
   name:string;
   path:string;
   isCurrent:boolean;
+  chartTheme:string;
 }
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
   ls = localStorage;
-  currentTheme: string;
+  currentTheme: Theme;
   availableThemes: Theme[] = [
     {
-      name:'Bootstrap Dark Theme', 
+      name:'Dark Theme', 
       path:'bootstrap4-dark-blue',
       isCurrent: true,
+      chartTheme: 'dark',
     }, 
     {
-      name:'Bootstrap Light Theme',
+      name:'Light Theme',
       path:'bootstrap4-light-blue',
       isCurrent: false,
+      chartTheme: 'light',
     }, 
-    {
-      name:'Arya Blue Theme',
-      path:'arya-blue',
-      isCurrent: false,
-    }
   ]
+  chartThemeUpdates: BehaviorSubject<string> = new BehaviorSubject('');
+
   constructor() {
     this.setTheme(this.availableThemes[0].path);
   }
@@ -36,30 +37,27 @@ export class ThemeService {
     return this.ls.getItem('theme') || this.availableThemes[0].path;
   }
 
-  setTheme(themeName: string) {
-    this.currentTheme = themeName;
-    this.ls.setItem('theme', this.currentTheme);
-    this.replaceStyleSheet(this.currentTheme);
-
-    this.availableThemes.forEach(theme => {
-      if(theme.path === this.currentTheme){
+  setTheme(themePath: string) {
+     this.availableThemes.forEach(theme => {
+      if(theme.path === themePath){
+        this.currentTheme = theme;
         theme.isCurrent = true;
       } else {
         theme.isCurrent = false;
       }
-    })
-  }
+    });
 
-  previewTheme(themeName: string){
-    this.replaceStyleSheet(themeName);
+    this.ls.setItem('theme', this.currentTheme.path);
+    this.replaceStyleSheet(this.currentTheme.path);
+    this.chartThemeUpdates.next(this.currentTheme.chartTheme)
   }
 
   getAvailableThemes(): Theme[]{
     return this.availableThemes;
   }
 
-  revertToCurrent(): void {
-    this.replaceStyleSheet(this.currentTheme);
+  getChartThemeUpdates(): Observable<string> {
+    return this.chartThemeUpdates.asObservable();
   }
 
   replaceStyleSheet(value: string): void {

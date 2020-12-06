@@ -1,8 +1,7 @@
 <p-sidebar [(visible)]="isOpen" position="right">
     <h1>Themes</h1>
-    <ul (mouseleave)="revertToCurrentTheme()">
+    <ul>
         <li *ngFor="let theme of availableThemes"
-            (mouseenter)="previewTheme(theme.path)" 
             (click)="setTheme(theme.path)"
         >   
             <input type="checkbox" [checked]="theme.isCurrent">

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { ThemeService } from 'src/app/services/theme.service';
+
 
 import * as Highcharts from 'highcharts';
-import Dark from 'highcharts/themes/high-contrast-dark'
-import Light from 'highcharts/themes/high-contrast-light'
-
+import { ChartService } from 'src/app/services/chart.service';
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -22,70 +22,47 @@ noData(Highcharts)
   styleUrls: ['./chart.component.scss']
 })
 export class ChartComponent implements OnInit {
-  public options: any = {
-      title: {
-          text: ''
-      },
-
-      yAxis: {
-          title: {
-              text: 'Number of Deaths'
-          }
-      },
-
-      xAxis: {
-          categories: [],
-      },
-
-      legend: {
-          layout: 'horizontal',
-          align: 'center',
-          verticalAlign: 'bottom'
-      },
-
-      series: [],
-
-      responsive: {
-          rules: [{
-              condition: {
-                  maxWidth: 500
-              },
-              chartOptions: {
-                  legend: {
-                      layout: 'horizontal',
-                      align: 'center',
-                      verticalAlign: 'bottom'
-                  }
-              }
-          }]
-      }
-  };
-  months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  options: any; 
   chart: any;
 
-  constructor(private apiService: ApiService) { }
+  constructor(
+    private apiService: ApiService,
+    private themeService: ThemeService,
+    private chartService: ChartService,
+  ) { }
 
   ngOnInit(): void {
+    this.options = this.chartService.getOptions();
     this.getData();
+    this.themeService.getChartThemeUpdates().subscribe(theme => {
+      theme === 'light' ? this.lightTheme() : this.darkTheme();
+    })
   }
 
   getData(){
-    this.darkTheme();
+    console.log("getData")
     this.apiService.getData().subscribe(data => {
         this.options.series = data.series;
         this.options.xAxis.categories = data.categories;       
         this.chart = Highcharts.chart('chart-container', this.options);
+        console.log(this.chart);
+        
+
     });
   }
 
   darkTheme(): void{
-    Dark(Highcharts);
+    console.log('Dark')
+    const options = this.chartService.setDarkTheme()
+    this.reRenderChart(options);
   }
 
   lightTheme():void {
-    Light(Highcharts);
+    console.log('Light')
+    const options = this.chartService.setLightTheme();
+    this.reRenderChart(options);
   }
-  reRenderChart(): void {
-    Highcharts.chart('chart-container', this.options);
+  reRenderChart(options:any): void {
+    Highcharts.chart('chart-container', options);
   }
 }

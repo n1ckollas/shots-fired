@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class ChartService {
   public options: any = {
     chart:{
-      backgroundColor: "#ffffff",
+      backgroundColor: null,
       style:{
         fontFamily:"Arial",
         color:"#000000"
@@ -98,7 +98,6 @@ export class ChartService {
   }
 
   setDarkTheme(){
-    this.options.chart.backgroundColor = "#2a323d";
     this.options.colors = ["#ff0000", "#00ffff", "#ff1aff", "#ffff00", "#00cc00",
                             "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"],
     this.options.yAxis.lineColor = '#cecece';
@@ -115,7 +114,6 @@ export class ChartService {
   }
 
   setLightTheme(){
-    this.options.chart.backgroundColor = "#ffffff";
     this.options.colors = ["#ff0000", "#0000ff", "#ff1aff", "#00e6e6", "#00cc00",
                             "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"],
     this.options.yAxis.lineColor = '#000';

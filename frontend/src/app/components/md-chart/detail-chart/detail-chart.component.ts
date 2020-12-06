@@ -41,11 +41,8 @@ export class DetailChartComponent implements OnInit {
         chart: {
             marginBottom: 120,
             reflow: false,
-            marginLeft: 50,
-            marginRight: 20,
-            style: {
-                position: 'absolute'
-            }
+            marginLeft: 0,
+            marginRight: 0,
         },
         credits: {
             enabled: false

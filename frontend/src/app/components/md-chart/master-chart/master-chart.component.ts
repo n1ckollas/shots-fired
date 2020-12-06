@@ -45,13 +45,12 @@ export class MasterChartComponent implements OnInit {
           reflow: false,
           borderWidth: 0,
           backgroundColor: null,
-          marginLeft: 50,
-          marginRight: 20,
+          marginLeft: 0,
+          marginRight: 0,
+          height:100,
           zoomType: 'x',
           events: {
-
-              // listen to the selection event on the master chart to update the
-              // extremes of the detail chart
+            
               selection: function (event) {
                   var extremesObject = event.xAxis[0],
                       min = extremesObject.min,
@@ -84,14 +83,6 @@ export class MasterChartComponent implements OnInit {
                   });
 
                   detailChartUpdates.subscribe(chart => {
-                    // const s = 
-                    // {
-                    //   name: 'USD to EUR',
-                    //   pointStart: detailStart,
-                    //   pointInterval: 24 * 3600 * 1000,
-                    //   data: detailData
-                    // }
-                    // chart.series.push(s);
                     chart.series[0].setData(detailData)
                   })
 

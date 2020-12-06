@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { MenubarModule } from 'primeng/menubar';
 import { SidebarModule } from 'primeng/sidebar';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 const modules = [
@@ -12,6 +13,7 @@ const modules = [
     CardModule,
     MenubarModule,
     SidebarModule,
+    CheckboxModule,
 ]
 
 @NgModule({

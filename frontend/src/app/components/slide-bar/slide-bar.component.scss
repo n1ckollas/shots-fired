@@ -1,0 +1,21 @@
+p-sidebar::ng-deep{
+    .p-sidebar{
+        .p-sidebar-content{
+            ul{
+                width:100%;
+                padding:0;
+
+                li {
+                    list-style-type: none;
+                    padding:10px 20px;
+                    width:100%;
+                }
+                li:hover{
+                    background: var(--surface-d);
+                    cursor: pointer;
+                }
+
+            }
+        }
+    }
+}

@@ -1,35 +1,70 @@
 import { Injectable } from '@angular/core';
 
+export interface Theme {
+  name:string;
+  path:string;
+  isCurrent:boolean;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
   ls = localStorage;
-  defaultTheme = 'bootstrap4-dark-blue';
   currentTheme: string;
-  availableThemes = {
-    default : 'bootstrap4-dark-blue',
-    light : 'bootstrap4-light-blue',
-    arya : 'arya-blue'
-  }
-
+  availableThemes: Theme[] = [
+    {
+      name:'Bootstrap Dark Theme', 
+      path:'bootstrap4-dark-blue',
+      isCurrent: true,
+    }, 
+    {
+      name:'Bootstrap Light Theme',
+      path:'bootstrap4-light-blue',
+      isCurrent: false,
+    }, 
+    {
+      name:'Arya Blue Theme',
+      path:'arya-blue',
+      isCurrent: false,
+    }
+  ]
   constructor() {
-    this.setTheme('default');
+    this.setTheme(this.availableThemes[0].path);
   }
   
   private getTheme(): string {
-    return this.ls.getItem('theme') || this.defaultTheme;
+    return this.ls.getItem('theme') || this.availableThemes[0].path;
   }
 
   setTheme(themeName: string) {
-    this.currentTheme = this.availableThemes[themeName]
+    this.currentTheme = themeName;
     this.ls.setItem('theme', this.currentTheme);
-    const linkTag: any = document.getElementById('theme');
-    linkTag.href = `assets/${this.currentTheme}/theme.css`;
-    document.querySelector('body').className = `${this.currentTheme}-theme`;
+    this.replaceStyleSheet(this.currentTheme);
+
+    this.availableThemes.forEach(theme => {
+      if(theme.path === this.currentTheme){
+        theme.isCurrent = true;
+      } else {
+        theme.isCurrent = false;
+      }
+    })
   }
 
   previewTheme(themeName: string){
-    
+    this.replaceStyleSheet(themeName);
+  }
+
+  getAvailableThemes(): Theme[]{
+    return this.availableThemes;
+  }
+
+  revertToCurrent(): void {
+    this.replaceStyleSheet(this.currentTheme);
+  }
+
+  replaceStyleSheet(value: string): void {
+    const linkTag: any = document.getElementById('theme');
+    linkTag.href = `assets/${value}/theme.css`;
+    document.querySelector('body').className = `${value}-theme`;
   }
 }

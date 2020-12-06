@@ -8,17 +8,12 @@ import { ThemeService } from './services/theme.service';
 })
 export class AppComponent {
 
-  constructor(private themeService: ThemeService) {}
-  display = false;
+  constructor() {}
 
-  changeTheme(themeName: string){
-    this.themeService.setTheme(themeName);
-  }
+  display:boolean;
 
-  openBar(event): void{
-    if(event === 'open'){
-      this.display  = true;
-    }
+  openBar(event:string): void{
+    if(event === 'open'){ this.display = true; }
   }
   
 }

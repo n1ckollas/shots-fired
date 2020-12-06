@@ -5,9 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class ThemeService {
   ls = localStorage;
-  // defaultTheme = 'arya-blue';
-  // defaultTheme = 'bootstrap4-light-blue';
   defaultTheme = 'bootstrap4-dark-blue';
+  currentTheme: string;
   availableThemes = {
     default : 'bootstrap4-dark-blue',
     light : 'bootstrap4-light-blue',
@@ -23,10 +22,14 @@ export class ThemeService {
   }
 
   setTheme(themeName: string) {
-    const theme = this.availableThemes[themeName]
-    this.ls.setItem('theme', theme);
+    this.currentTheme = this.availableThemes[themeName]
+    this.ls.setItem('theme', this.currentTheme);
     const linkTag: any = document.getElementById('theme');
-    linkTag.href = `assets/${theme}/theme.css`;
-    document.querySelector('body').className = `${theme}-theme`;
+    linkTag.href = `assets/${this.currentTheme}/theme.css`;
+    document.querySelector('body').className = `${this.currentTheme}-theme`;
+  }
+
+  previewTheme(themeName: string){
+    
   }
 }

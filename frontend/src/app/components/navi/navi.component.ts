@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { SideBarService } from '../../services/side-bar.service';
 
 @Component({
   selector: 'app-navi',
@@ -9,8 +10,8 @@ import { MenuItem } from 'primeng/api';
 export class NaviComponent implements OnInit {
 
   items: MenuItem[];
-  @Output() openEvent:  EventEmitter<string> = new EventEmitter();
-  constructor() { }
+
+  constructor(private sideBarService: SideBarService) { }
 
 
   ngOnInit() {
@@ -27,7 +28,6 @@ export class NaviComponent implements OnInit {
   }
 
   openSideBar() {
-    console.log('hi')
-    this.openEvent.emit('open')
+    this.sideBarService.openSidebar();
   }
 }

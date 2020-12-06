@@ -1,12 +1,5 @@
 <app-navi (openEvent)="openBar($event)"></app-navi>
-<p-sidebar [(visible)]="display" position="right">
-    <h1>Themes</h1>
-    <ul>
-        <li (mouseenter)="changeTheme('default')">Bootstrap Dark</li>
-        <li (mouseenter)="changeTheme('light')">Bootstrap Light</li>
-        <li (mouseenter)="changeTheme('arya')">Bootstrap Arya</li>
-    </ul>
-</p-sidebar>
+<app-slide-bar [(isOpen)]="display"></app-slide-bar>
 <div class="main-container">
     <router-outlet></router-outlet>
 </div>

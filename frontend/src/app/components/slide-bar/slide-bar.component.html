@@ -1,0 +1,8 @@
+<p-sidebar [(visible)]="isOpen" position="right">
+    <h1>Themes</h1>
+    <ul>
+        <li (mouseenter)="previewTheme('default')" (click)="setTheme('arya')">Bootstrap Dark</li>
+        <li (mouseenter)="previewTheme('light')" (click)="setTheme('arya')">Bootstrap Light</li>
+        <li (mouseenter)="previewTheme('arya')" (click)="setTheme('arya')">Bootstrap Arya</li>
+    </ul>
+</p-sidebar>

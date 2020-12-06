@@ -25,13 +25,8 @@ export class SlideBarComponent implements OnInit {
   setTheme(themeName: string){
     this.themeService.setTheme(themeName);
   }
-  previewTheme(themeName: string) {
-    this.themeService.previewTheme(themeName);
-  }
+  
   getAvailableThemes(): void {
     this.availableThemes = this.themeService.getAvailableThemes();
-  }
-  revertToCurrentTheme(): void {
-    this.themeService.revertToCurrent();
   }
 } 

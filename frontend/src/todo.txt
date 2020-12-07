@@ -21,6 +21,16 @@ BACKEND:
  email subscription.
 
 
+ IDEAS:
+ - how to find out the amount of bussinesses closed.
+    - Legaly operating bussinesses db => open data. 
+    - Remember to check the attached xls files for older db versions
+    - License applications or Renval db.
+    - Compare the licence expiration date from Legaly operating businesse 
+    - to the renewal dates in the License application or renewal db.
+    - 
+
+
 
 DEPLOY:
 - setup the aws.

@@ -45,8 +45,7 @@ export class DetailChartComponent implements OnInit {
             enabled: false
         },
         title: {
-            text: 'Historical USD to EUR Exchange Rate',
-            align: 'left'
+            text: null,
         },
         subtitle: {
             text: 'Select an area by dragging across the lower chart',

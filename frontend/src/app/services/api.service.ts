@@ -17,7 +17,7 @@ export class ApiService {
   constructor(private http:HttpClient) { }
 
   getData(){
-   return this.http.get<IHomeScreenData>("http://localhost:8000").pipe(
+   return this.http.get<IHomeScreenData>("http://localhost:8000/death-count/").pipe(
      catchError((error) => {
        const result:IHomeScreenData = {
          categories: [],

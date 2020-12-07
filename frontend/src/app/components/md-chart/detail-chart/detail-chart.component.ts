@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ChartService } from 'src/app/services/chart.service';
-
+import { ApiService } from 'src/app/services/api.service';
 
 import * as Highcharts from 'highcharts';
-import { ApiService } from 'src/app/services/api.service';
+
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -39,11 +39,8 @@ export class DetailChartComponent implements OnInit {
 
   Highcharts.chart('detail-container', {
         chart: {
-            marginBottom: 120,
             reflow: false,
-            marginLeft: 0,
-            marginRight: 0,
-        },
+            },
         credits: {
             enabled: false
         },

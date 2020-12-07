@@ -45,12 +45,9 @@ export class MasterChartComponent implements OnInit {
           reflow: false,
           borderWidth: 0,
           backgroundColor: null,
-          marginLeft: 0,
-          marginRight: 0,
           height:100,
           zoomType: 'x',
           events: {
-
               selection: function (event) {
                   var extremesObject = event.xAxis[0],
                       min = extremesObject.min,
@@ -104,7 +101,7 @@ export class MasterChartComponent implements OnInit {
               id: 'mask-before',
               from: data[0][0],
               to: data[data.length - 1][0],
-              color: 'rgba(0, 0, 0, 0.2)'
+              color: 'rgba(0, 0, 0, 0.3)'
           }],
           title: {
               text: null

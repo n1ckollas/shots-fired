@@ -17,7 +17,7 @@ export class ApiService {
   constructor(private http:HttpClient) { }
 
   getData(){
-   return this.http.get<IHomeScreenData>("http://localhost:8000/death-count/").pipe(
+   return this.http.get<IHomeScreenData>("http://localhost:8000/all-dc/").pipe(
      catchError((error) => {
        const result:IHomeScreenData = {
          categories: [],
@@ -29,7 +29,7 @@ export class ApiService {
   }
 
   getJson(){
-    const url = "https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/usdeur.json"
+    const url = "http://localhost:8000/borough-dc/"
     return this.http.get<[[number, number]]>(url);
   }
 

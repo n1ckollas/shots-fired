@@ -22,15 +22,15 @@ export class NaviComponent implements OnInit {
         },
         {
           label: 'Shootings', 
-          url: 'death-count',
+          url: 'shootings',
         },
         {
           label: 'Evictions', 
-          url: 'death-count',
+          url: 'evictions',
         },
         {
           label: 'Businesses Closed', 
-          url: 'death-count',
+          url: 'businesses-closed',
         }
       ];
   }

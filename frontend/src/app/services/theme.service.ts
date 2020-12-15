@@ -30,7 +30,8 @@ export class ThemeService {
   chartThemeUpdates: BehaviorSubject<string> = new BehaviorSubject('');
 
   constructor() {
-    this.setTheme(this.availableThemes[0].path);
+    const theme = this.getTheme();
+    this.setTheme(theme);
   }
   
   private getTheme(): string {
@@ -61,6 +62,7 @@ export class ThemeService {
   }
 
   replaceStyleSheet(value: string): void {
+    this.ls.setItem('theme', value);
     const linkTag: any = document.getElementById('theme');
     linkTag.href = `assets/${value}/theme.css`;
     document.querySelector('body').className = `${value}-theme`;

@@ -14,7 +14,6 @@ class Home(APIView):
         data = r.json()
         categories = []
         series = []
-        print(data)
 
         bk = { 'name': 'Brooklyn',       'data': [] }
         bx = { 'name': 'Bronx',          'data': [] }

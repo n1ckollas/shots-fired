@@ -2,9 +2,6 @@ When can we set it online?
 UI :: Current Work:
 - Separate component for chart.
     - optional master chart.
-    - Interactive chart with zoom strip in the bottom to zoom on dates.
-
-
 
 
 UI :: Planned.

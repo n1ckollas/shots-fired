@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -18,6 +18,7 @@ export class ApiService {
 
   getData(){
    return this.http.get<IHomeScreenData>("http://localhost:8000/all-dc/").pipe(
+     tap((data) => console.log(data)),
      catchError((error) => {
        const result:IHomeScreenData = {
          categories: [],
@@ -30,7 +31,16 @@ export class ApiService {
 
   getJson(){
     const url = "http://localhost:8000/borough-dc/"
-    return this.http.get<[[number, number]]>(url);
+    return this.http.get<[[number, number]]>(url).pipe(
+      tap((data) => console.log(data)),
+      catchError((error) => {
+        const result:IHomeScreenData = {
+          categories: [],
+          series: [],
+        }
+         return of(result);
+       })
+     )
   }
 
   test(){

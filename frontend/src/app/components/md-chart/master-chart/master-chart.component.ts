@@ -30,7 +30,7 @@ export class MasterChartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.apiService.getJson().subscribe(data => {
+    this.apiService.getDeathcountForBk().subscribe(data => {
       this.renderChart(data);
     })
   }

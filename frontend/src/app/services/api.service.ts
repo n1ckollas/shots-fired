@@ -16,7 +16,7 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-  getData(){
+  getDeathCountForAllBoroughs(){
    return this.http.get<IHomeScreenData>("http://localhost:8000/all-dc/").pipe(
      tap((data) => console.log(data)),
      catchError((error) => {
@@ -29,7 +29,7 @@ export class ApiService {
     )
   }
 
-  getJson(){
+  getDeathcountForBk(){
     const url = "http://localhost:8000/borough-dc/"
     return this.http.get<[[number, number]]>(url).pipe(
       tap((data) => console.log(data)),
@@ -43,7 +43,4 @@ export class ApiService {
      )
   }
 
-  test(){
-    console.log('test')
-  }
 }

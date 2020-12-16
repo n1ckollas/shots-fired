@@ -1,7 +1,7 @@
 When can we set it online?
 UI :: Current Work:
 - Separate component for chart.
-    - optional master chart.
+    - Style Master Detail chart to mathc the themes.
 
 
 UI :: Planned.

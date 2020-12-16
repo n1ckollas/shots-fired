@@ -41,7 +41,7 @@ export class ChartComponent implements OnInit {
   }
 
   getData(){
-    this.apiService.getData().subscribe(data => {
+    this.apiService.getDeathCountForAllBoroughs().subscribe(data => {
       this.options.series = data.series;
       this.options.xAxis.categories = data.categories;       
       this.chart = Highcharts.chart(this.detailContainer, this.options);

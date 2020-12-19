@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-import * as Highcharts from 'highcharts';
 export interface IChart {
   [key: string]: any;
 }

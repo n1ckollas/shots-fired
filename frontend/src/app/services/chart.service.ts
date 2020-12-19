@@ -10,7 +10,7 @@ export interface IChart {
   providedIn: 'root'
 })
 export class SimpleChartService {
-  public options: Highcharts.Options = {
+  public options = {
     chart:{
       backgroundColor: null,
       style:{
@@ -22,82 +22,82 @@ export class SimpleChartService {
            "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"],
     
     title: {
-        text: '',
-        style: {
-          color:'#000000',
-        }
+      text: '',
+      style: {
+        color:'#000000',
+      }
     },
 
     yAxis: {
-        lineColor: '#000',
-        lineWidth: 1, 
-        tickWidth: 1,
-        tickColor: '#000',
-        labels: {
-           style: {
-              color: '#000',
-              font: '12px Trebuchet MS, Verdana, sans-serif'
-           }
-        },
-        title: {
-          text: 'Number of Deaths',
+      lineColor: '#000',
+      lineWidth: 1, 
+      tickWidth: 1,
+      tickColor: '#000',
+      labels: {
+          style: {
+            color: '#000',
+            font: '12px Trebuchet MS, Verdana, sans-serif'
+          }
+      },
+      title: {
+        text: 'Number of Deaths',
+        style: {
+          color: '#333',
+          fontWeight: 'bold',
+          fontSize: '12px',
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+        }            
+      }
+    },
+
+    xAxis: {
+      categories: [],
+      gridLineWidth: 0,
+      lineColor: '#000',
+      tickColor: '#000',
+      labels: {
+          style: {
+            color: '#000',
+            font: '12px Trebuchet MS, Verdana, sans-serif'
+          }
+      },
+      title: {
           style: {
             color: '#333',
             fontWeight: 'bold',
             fontSize: '12px',
             fontFamily: 'Trebuchet MS, Verdana, sans-serif'
-          }            
-        }
-    },
 
-    xAxis:<Highcharts.XAxisOptions> {
-        categories: [],
-        gridLineWidth: 0,
-        lineColor: '#000',
-        tickColor: '#000',
-        labels: {
-           style: {
-              color: '#000',
-              font: '12px Trebuchet MS, Verdana, sans-serif'
-           }
-        },
-        title: {
-           style: {
-              color: '#333',
-              fontWeight: 'bold',
-              fontSize: '12px',
-              fontFamily: 'Trebuchet MS, Verdana, sans-serif'
-  
-           }            
-        }
+          }            
+      }
     },
 
     legend: {
-        layout: 'horizontal',
-        align: 'center',
-        verticalAlign: 'bottom',
-        itemStyle:{
-          color:"#333333",
-          fontSize:"14px",
-        }
+      layout: 'horizontal',
+      align: 'center',
+      verticalAlign: 'bottom',
+      itemStyle:{
+        color:"#333333",
+        fontSize:"14px",
+      }
     },
 
     series: [],
 
     responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
-    }
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+  }
   };
 
   detailChart: BehaviorSubject<IChart> = new BehaviorSubject({})
@@ -119,6 +119,7 @@ export class SimpleChartService {
     this.options.xAxis.lineColor = '#cecece';
     this.options.xAxis.tickColor = '#cecece';
     this.options.xAxis.labels.style.color = '#fff';
+
 
     this.options.legend.itemStyle.color = '#fff';
     return this.options;

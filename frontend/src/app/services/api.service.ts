@@ -4,7 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export interface IHomeScreenData {
+export interface ISimpleChartData {
   categories: string[];
   series: object[];
 }
@@ -17,10 +17,10 @@ export class ApiService {
   constructor(private http:HttpClient) { }
 
   getDeathCountForAllBoroughs(){
-   return this.http.get<IHomeScreenData>("http://localhost:8000/all-dc/").pipe(
-     tap((data) => console.log(data)),
+   return this.http.get<ISimpleChartData>("http://localhost:8000/all-dc/").pipe(
+    //  tap((data) => console.log(data)),
      catchError((error) => {
-       const result:IHomeScreenData = {
+       const result:ISimpleChartData = {
          categories: [],
          series: [],
        }
@@ -32,13 +32,9 @@ export class ApiService {
   getDeathcountForBk(){
     const url = "http://localhost:8000/borough-dc/"
     return this.http.get<[[number, number]]>(url).pipe(
-      tap((data) => console.log(data)),
+      // tap((data) => console.log(data)),
       catchError((error) => {
-        const result:IHomeScreenData = {
-          categories: [],
-          series: [],
-        }
-         return of(result);
+         return of([]);
        })
      )
   }

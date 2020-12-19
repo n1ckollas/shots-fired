@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChartService } from 'src/app/services/chart.service';
+import { SimpleChartService } from 'src/app/services/chart.service';
 import { ApiService } from 'src/app/services/api.service';
 
 import * as Highcharts from 'highcharts';
@@ -22,10 +22,10 @@ noData(Highcharts);
 })
 export class DetailChartComponent implements OnInit {
     @Input() data:any;
-  detailChart: any;
+    detailChart: any;
 
-  constructor(
-      private chartService: ChartService,
+    constructor(
+      private chartService: SimpleChartService,
       private apiService: ApiService,
     ) { }
 
@@ -42,7 +42,7 @@ export class DetailChartComponent implements OnInit {
             reflow: false,
             },
         credits: {
-            enabled: false
+            enabled: false,
         },
         title: {
             text: null,
@@ -79,7 +79,7 @@ export class DetailChartComponent implements OnInit {
         series: [
             { 
               type:'line',
-              name: 'USD to EUR',
+              name: 'People Died:',
               pointStart: apiData[0][0],
               pointInterval: 24 * 3600 * 1000,
               data: apiData,

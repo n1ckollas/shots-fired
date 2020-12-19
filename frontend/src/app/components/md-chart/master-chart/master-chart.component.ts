@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import * as Highcharts from 'highcharts';
 import { ApiService } from 'src/app/services/api.service';
-import { ChartService } from 'src/app/services/chart.service';
+import { SimpleChartService } from 'src/app/services/chart.service';
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -25,7 +25,7 @@ export class MasterChartComponent implements OnInit {
   @Input() data;
 
   constructor(
-    private chartService: ChartService,
+    private chartService: SimpleChartService,
     private apiService: ApiService,
   ) { }
 

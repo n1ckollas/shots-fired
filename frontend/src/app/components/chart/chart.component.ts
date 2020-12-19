@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ThemeService } from 'src/app/services/theme.service';
-import { ChartService } from 'src/app/services/chart.service';
+import { SimpleChartService } from 'src/app/services/chart.service';
 
 
 import * as Highcharts from 'highcharts';
@@ -29,7 +29,7 @@ export class ChartComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private themeService: ThemeService,
-    private chartService: ChartService,
+    private chartService: SimpleChartService,
   ) { }
 
   ngOnInit(): void {

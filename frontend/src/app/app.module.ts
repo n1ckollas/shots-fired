@@ -16,7 +16,7 @@ import { MdChartComponent } from './components/md-chart/md-chart.component';
 import { ApiService } from './services/api.service';
 import { MasterChartComponent } from './components/md-chart/master-chart/master-chart.component';
 import { DetailChartComponent } from './components/md-chart/detail-chart/detail-chart.component';
-import { ChartService } from './services/chart.service';
+import { SimpleChartService} from './services/chart.service';
 
 
 @NgModule({
@@ -40,7 +40,7 @@ import { ChartService } from './services/chart.service';
   providers: [
     ThemeService,
     ApiService,
-    ChartService,
+    SimpleChartService,
   ],
   bootstrap: [AppComponent]
 })

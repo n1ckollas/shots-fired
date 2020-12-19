@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+
+import * as Highcharts from 'highcharts';
 export interface IChart {
   [key: string]: any;
 }
+
 @Injectable({
   providedIn: 'root'
 })
-export class ChartService {
-  public options: any = {
+export class SimpleChartService {
+  public options: Highcharts.Options = {
     chart:{
       backgroundColor: null,
       style:{
@@ -20,7 +23,9 @@ export class ChartService {
     
     title: {
         text: '',
-        color:'#000000',
+        style: {
+          color:'#000000',
+        }
     },
 
     yAxis: {
@@ -45,7 +50,7 @@ export class ChartService {
         }
     },
 
-    xAxis: {
+    xAxis:<Highcharts.XAxisOptions> {
         categories: [],
         gridLineWidth: 0,
         lineColor: '#000',

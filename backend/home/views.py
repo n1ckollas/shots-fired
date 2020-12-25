@@ -7,6 +7,10 @@ from datetime import datetime
 import requests
 
 
+def sort_first(val, **args):
+    return val[0]
+
+
 class Home(APIView):
 
     def get(self, request):
@@ -43,15 +47,20 @@ class Home(APIView):
 
 
 class DeathCountPerBorough(APIView):
+
     def get(self, request):
-        r = requests.get("https://data.cityofnewyork.us/resource/rc75-m7u3.json?$order=date_of_interest")
+        r = requests.get("https://data.cityofnewyork.us/resource/cwmx-mvra.json")
         data = r.json()
         series = []
         ep = datetime(1970, 1, 1, 0, 0)
         
         for d in data:
-            date = datetime.strptime(d['date_of_interest'], "%Y-%m-%dT%H:%M:%S.%f")
+            date = datetime.strptime(d['specimen_date'], "%Y-%m-%dT%H:%M:%S.%f")
             x = (date - ep).total_seconds() * 1000;
-            series.append([x, int(d['bk_death_count'])])
+            series.append([x, int(d['number_deaths'])])
+
+        series.sort(key=sort_first)
 
         return Response(series)
+    
+    

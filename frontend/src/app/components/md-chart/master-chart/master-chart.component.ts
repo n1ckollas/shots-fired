@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 import * as Highcharts from 'highcharts';
@@ -22,7 +22,6 @@ noData(Highcharts);
   styleUrls: ['./master-chart.component.scss']
 })
 export class MasterChartComponent implements OnInit {
-  @Input() data;
 
   constructor(
     private chartService: SimpleChartService,

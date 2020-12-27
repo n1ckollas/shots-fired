@@ -107,34 +107,34 @@ export class SimpleChartService {
     return this.options;
   }
 
-  setDarkTheme(){
-    this.options.colors = ["#ff0000", "#00ffff", "#ff1aff", "#ffff00", "#00cc00",
+  setDarkTheme(options){
+    options.colors = ["#ff0000", "#00ffff", "#ff1aff", "#ffff00", "#00cc00",
                             "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"],
-    this.options.yAxis.lineColor = '#cecece';
-    this.options.yAxis.tickColor = '#cecece';
-    this.options.yAxis.title.style.color = '#fff';
-    this.options.yAxis.labels.style.color = '#fff';
+    options.yAxis.lineColor = '#cecece';
+    options.yAxis.tickColor = '#cecece';
+    options.yAxis.title.style.color = '#fff';
+    options.yAxis.labels.style.color = '#fff';
 
-    this.options.xAxis.lineColor = '#cecece';
-    this.options.xAxis.tickColor = '#cecece';
-    this.options.xAxis.labels.style.color = '#fff';
+    options.xAxis.lineColor = '#cecece';
+    options.xAxis.tickColor = '#cecece';
+    options.xAxis.labels.style.color = '#fff';
 
 
-    this.options.legend.itemStyle.color = '#fff';
-    return this.options;
+    options.legend.itemStyle.color = '#fff';
+    return options;
   }
 
-  setLightTheme(){
-    this.options.colors = ["#ff0000", "#0000ff", "#ff1aff", "#00e6e6", "#00cc00",
+  setLightTheme(options){
+    options.colors = ["#ff0000", "#0000ff", "#ff1aff", "#00e6e6", "#00cc00",
                             "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"],
-    this.options.yAxis.lineColor = '#000';
-    this.options.yAxis.tickColor = '#000';
-    this.options.yAxis.labels.style.color = '#000';
-    this.options.xAxis.lineColor = '#000';
-    this.options.xAxis.tickColor = '#000';
-    this.options.xAxis.labels.style.color = '#000';
-    this.options.legend.itemStyle.color = '#000';
-    return this.options;
+    options.yAxis.lineColor = '#000';
+    options.yAxis.tickColor = '#000';
+    options.yAxis.labels.style.color = '#000';
+    options.xAxis.lineColor = '#000';
+    options.xAxis.tickColor = '#000';
+    options.xAxis.labels.style.color = '#000';
+    options.legend.itemStyle.color = '#000';
+    return options;
   }
 
   getDetailChartUpdates(): Observable<IChart>{

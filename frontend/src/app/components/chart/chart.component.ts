@@ -49,12 +49,12 @@ export class ChartComponent implements OnInit {
   }
 
   darkTheme(): void{
-    const options = this.chartService.setDarkTheme()
+    const options = this.chartService.setDarkTheme(this.options)
     this.reRenderChart(options);
   }
 
   lightTheme():void {
-    const options = this.chartService.setLightTheme();
+    const options = this.chartService.setLightTheme(this.options);
     this.reRenderChart(options);
   }
   reRenderChart(options:any): void {

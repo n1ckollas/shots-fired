@@ -86,6 +86,7 @@ export class MasterChartComponent implements OnInit {
               }
           }
       },
+      colors:["#FF8933"],
       title: {
           text: null
       },
@@ -146,7 +147,7 @@ export class MasterChartComponent implements OnInit {
 
       series: [{
           type: 'area',
-          name: 'USD to EUR',
+          name: 'Death Cound',
           pointInterval: 24 * 3600 * 1000,
           pointStart: data[0][0],
           data: data

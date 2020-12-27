@@ -50,7 +50,7 @@ export class DetailChartComponent implements OnInit {
 
   renderChart(apiData, options){
     let item = { 
-              type:'spline',
+              type:'line',
               name: 'Deaths',
               pointStart: apiData[0][0],
               pointInterval: 24 * 3600 * 1000,

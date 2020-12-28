@@ -22,13 +22,12 @@ noData(Highcharts);
   templateUrl: './detail-chart.component.html',
   styleUrls: ['./detail-chart.component.scss']
 })
+
 export class DetailChartComponent implements OnInit {
     detailChart: any;
     detailContainer = 'detail-container';
     options = {} 
 
-
- 
     constructor(
       private chartService: SimpleChartService,
       private detailChartService: DetailChartService,

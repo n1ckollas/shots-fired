@@ -38,7 +38,7 @@ export class DetailChartComponent implements OnInit {
   ngOnInit(): void {
     this.options = this.detailChartService.getDetailChartOptions();
 
-    this.apiService.getDeathcountForBk().subscribe(data => {
+    this.apiService.getShootings().subscribe(data => {
         this.renderChart(data, this.options);
     });
 

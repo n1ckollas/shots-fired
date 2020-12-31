@@ -38,6 +38,7 @@ export class ChartComponent implements OnInit {
     this.themeService.getChartThemeUpdates().subscribe(theme => {
       theme === 'light' ? this.lightTheme() : this.darkTheme();
     })
+    this.apiService.getShootings().subscribe();
   }
 
   getData(){

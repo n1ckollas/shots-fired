@@ -32,6 +32,15 @@ export class ApiService {
   getDeathcountForBk(){
     const url = "http://localhost:8000/borough-dc/"
     return this.http.get<[[number, number]]>(url).pipe(
+      // tap((data) => console.log(data)),
+      catchError((error) => {
+         return of([]);
+       })
+     )
+  }
+  getShootings(){
+    const url = "http://localhost:8000/shootings/"
+    return this.http.get<[]>(url).pipe(
       tap((data) => console.log(data)),
       catchError((error) => {
          return of([]);

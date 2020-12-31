@@ -4,7 +4,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from datetime import datetime
+from sodapy import Socrata
+from tokens.auth_tokens import nyc_stats_app_token, user_name, password
 import requests
+
+client = Socrata('data.cityofnewyork.us',
+                 nyc_stats_app_token,
+                 username=user_name,
+                 password=password)
 
 
 def sort_first(val, **args):
@@ -14,8 +21,7 @@ def sort_first(val, **args):
 class Home(APIView):
 
     def get(self, request):
-        r = requests.get("https://data.cityofnewyork.us/resource/rc75-m7u3.json?$order=date_of_interest")
-        data = r.json()
+        data = client.get('rc75-m7u3', order='date_of_interest')
         categories = []
         series = []
 
@@ -49,8 +55,7 @@ class Home(APIView):
 class DeathCountPerBorough(APIView):
 
     def get(self, request):
-        r = requests.get("https://data.cityofnewyork.us/resource/cwmx-mvra.json")
-        data = r.json()
+        data = client.get('cwmx-mvra')
         series = []
         ep = datetime(1970, 1, 1, 0, 0)
         
@@ -63,4 +68,7 @@ class DeathCountPerBorough(APIView):
 
         return Response(series)
     
-    
+class Shootings(APIView):
+
+    def get(self, request):
+        return Response({'happy': 'world'}) 

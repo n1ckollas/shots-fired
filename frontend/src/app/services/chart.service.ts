@@ -11,6 +11,7 @@ export interface IChart {
 export class SimpleChartService {
   public options = {
     chart:{
+      type:'line',
       backgroundColor: null,
       style:{
         fontFamily:"Arial",

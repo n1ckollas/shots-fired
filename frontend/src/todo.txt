@@ -9,6 +9,11 @@ UI :: Planned.
 - chart drill down. When a drill down clicked => another chart shows up underneath.
 - angular statistics google acount.
 
+UI :: First page
+    - Covid 19 cases per borough
+    - Covid 19 cases to Shooting cases
+    - Covid 19 coses to eviciton cases
+    - Covid 19 cases to busines closed cases
 
 
 BACKEND:

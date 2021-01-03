@@ -52,21 +52,73 @@ class Home(APIView):
         return Response(data_set)
 
 
-class DeathCountPerBorough(APIView):
+class AllCases(APIView):
 
     def get(self, request):
-        data = client.get('cwmx-mvra')
-        series = []
+
+        max_extract_date = None
+        data = client.get('cwmx-mvra', select="MAX(extract_date)")
+        if (len(data) > 0):
+            max_extract_date = data[-1]["MAX_extract_date"]
+        else:
+            dates = client.get('cwmx-mvra', select="distinct extract_date")
+            dates = [x["extract_date"] for x in dates]
+            dates.sort(key = lambda date: datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%f"))
+            max_extract_date = dates[-1]
+
+
+        data = client.get('cwmx-mvra', select="*", 
+            where="extract_date = '%s'" % (max_extract_date),
+            order="specimen_date"
+        )
+
+        number_confirmed_data = []
+        number_deaths_data = []
+        number_hospitalized_data = [] 
+        number_tested_data = []
+
         ep = datetime(1970, 1, 1, 0, 0)
-        
+        date_to_specimen_map = {}
+
         for d in data:
             date = datetime.strptime(d['specimen_date'], "%Y-%m-%dT%H:%M:%S.%f")
-            x = (date - ep).total_seconds() * 1000;
-            series.append([x, int(d['number_deaths'])])
+            date_time_stamp = (date - ep).total_seconds() * 1000;
+            number_confirmed_data.append([date_time_stamp, int(d['number_confirmed'])])
+            number_deaths_data.append([date_time_stamp, int(d['number_deaths'])])
+            number_hospitalized_data.append([date_time_stamp, int(d['number_hospitalized'])])
+            number_tested_data.append([date_time_stamp, int(d['number_tested'])])
+         
+        # for d in data:
+        #     if(d["specimen_date"] in date_to_specimen_map.keys()):
+        #         date_to_specimen_map[d["specimen_date"]]["number_confirmed"] += int(d["number_confirmed"])
+        #         date_to_specimen_map[d["specimen_date"]]["number_deaths"] += int(d["number_deaths"])
+        #         date_to_specimen_map[d["specimen_date"]]["number_hospitalized"] += int(d["number_hospitalized"])
+        #         date_to_specimen_map[d["specimen_date"]]["number_tested"] += int(d["number_tested"])
+        #     else:
+        #         date_to_specimen_map[d["specimen_date"]] = {
+        #             "number_confirmed" : int(d["number_confirmed"]),
+        #             "number_deaths" : int(d["number_deaths"]),
+        #             "number_hospitalized" : int(d["number_hospitalized"]),
+        #             "number_tested" : int(d["number_tested"]),
+        #         }
+        
+        # for date in date_to_specimen_map.keys():
+        #     print(date)
+        #     print(date_to_specimen_map[date])
+        
+        number_confirmed_data.sort(key=sort_first)
+        number_deaths_data.sort(key=sort_first)
+        number_hospitalized_data.sort(key=sort_first)
+        number_tested_data.sort(key=sort_first)
 
-        series.sort(key=sort_first)
+        result = {
+            'number_confirmed': number_confirmed_data,
+            'number_deaths': number_deaths_data,
+            'number_hospitalized': number_hospitalized_data,
+            'number_tested': number_tested_data,
+        }
 
-        return Response(series)
+        return Response(result)
     
 class Shootings(APIView):
 
@@ -77,7 +129,7 @@ class Shootings(APIView):
         date_to_occurance_map = {}
 
         for d in data:
-            if( d["occur_date"] in date_to_occurance_map.keys()):
+            if(d["occur_date"] in date_to_occurance_map.keys()):
                 date_to_occurance_map[d["occur_date"]] += 1
             else:
                 date_to_occurance_map[d["occur_date"]] = 1
@@ -85,7 +137,7 @@ class Shootings(APIView):
 
         for occurance_date in date_to_occurance_map.keys():
             date = datetime.strptime(occurance_date, "%Y-%m-%dT%H:%M:%S.%f")
-            date_stamp = (date - ep).total_seconds() * 1000;
+            date_stamp = (date - ep).total_seconds() * 1000
             series.append([date_stamp, date_to_occurance_map[occurance_date]])
   
         return Response(series) 

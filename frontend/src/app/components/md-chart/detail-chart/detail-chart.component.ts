@@ -38,7 +38,7 @@ export class DetailChartComponent implements OnInit {
   ngOnInit(): void {
     this.options = this.detailChartService.getDetailChartOptions();
 
-    this.apiService.getShootings().subscribe(data => {
+    this.apiService.getDeathcountForBk().subscribe(data => {
         this.renderChart(data, this.options);
     });
 
@@ -48,15 +48,44 @@ export class DetailChartComponent implements OnInit {
   }
 
   renderChart(apiData, options){
-    let item = { 
-              type:'line',
-              name: 'Deaths',
-              pointStart: apiData[0][0],
-              pointInterval: 24 * 3600 * 1000,
-              data: apiData,
-            }
+
+    let tested = { 
+      type:'line',
+      name: 'Cases Tested',
+      pointStart: apiData.number_tested[0][0],
+      pointInterval: 24 * 3600 * 1000,
+      data: apiData.number_tested,
+    }
+
+    let confirmed = { 
+      type:'line',
+      name: 'Cases Confirmed',
+      pointStart: apiData.number_confirmed[0][0],
+      pointInterval: 24 * 3600 * 1000,
+      data: apiData.number_confirmed,
+    }
     
-    options.series.push(item);
+    let hospitalized = { 
+      type:'line',
+      name: 'Cases Hospitaized',
+      pointStart: apiData.number_hospitalized[0][0],
+      pointInterval: 24 * 3600 * 1000,
+      data: apiData.number_hospitalized,
+    }
+
+    let deaths = { 
+      type:'line',
+      name: 'Deaths',
+      pointStart: apiData.number_deaths[0][0],
+      pointInterval: 24 * 3600 * 1000,
+      data: apiData.number_deaths,
+    }
+            
+    options.series.push(tested);
+    options.series.push(confirmed);
+    options.series.push(hospitalized);
+    options.series.push(deaths);
+    
 
     Highcharts.chart(this.detailContainer, options, (chart) => {
       this.detailChart = chart;
@@ -80,3 +109,4 @@ export class DetailChartComponent implements OnInit {
     this.chartService.getDetailChart().next(this.detailChart);
   }
 }
+ 

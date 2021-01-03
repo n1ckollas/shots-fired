@@ -29,7 +29,7 @@ export class MasterChartComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.apiService.getShootings().subscribe(data => {
+    this.apiService.getDeathcountForBk().subscribe(data => {
       this.renderChart(data);
     })
   }
@@ -55,6 +55,7 @@ export class MasterChartComponent implements OnInit {
                       xAxis = this.xAxis[0];
 
                   // reverse engineer the last part of the data
+                  console.log(this.series);
                   this.series[0].data.forEach(point => {
                       if (point.x > min && point.x < max) {
                           detailData.push([point.x, point.y]);
@@ -147,7 +148,7 @@ export class MasterChartComponent implements OnInit {
 
       series: [{
           type: 'area',
-          name: 'Death Cound',
+          name: 'Death Count',
           pointInterval: 24 * 3600 * 1000,
           pointStart: data[0][0],
           data: data

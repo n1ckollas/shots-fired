@@ -88,24 +88,6 @@ class AllCases(APIView):
             number_hospitalized_data.append([date_time_stamp, int(d['number_hospitalized'])])
             number_tested_data.append([date_time_stamp, int(d['number_tested'])])
          
-        # for d in data:
-        #     if(d["specimen_date"] in date_to_specimen_map.keys()):
-        #         date_to_specimen_map[d["specimen_date"]]["number_confirmed"] += int(d["number_confirmed"])
-        #         date_to_specimen_map[d["specimen_date"]]["number_deaths"] += int(d["number_deaths"])
-        #         date_to_specimen_map[d["specimen_date"]]["number_hospitalized"] += int(d["number_hospitalized"])
-        #         date_to_specimen_map[d["specimen_date"]]["number_tested"] += int(d["number_tested"])
-        #     else:
-        #         date_to_specimen_map[d["specimen_date"]] = {
-        #             "number_confirmed" : int(d["number_confirmed"]),
-        #             "number_deaths" : int(d["number_deaths"]),
-        #             "number_hospitalized" : int(d["number_hospitalized"]),
-        #             "number_tested" : int(d["number_tested"]),
-        #         }
-        
-        # for date in date_to_specimen_map.keys():
-        #     print(date)
-        #     print(date_to_specimen_map[date])
-        
         number_confirmed_data.sort(key=sort_first)
         number_deaths_data.sort(key=sort_first)
         number_hospitalized_data.sort(key=sort_first)

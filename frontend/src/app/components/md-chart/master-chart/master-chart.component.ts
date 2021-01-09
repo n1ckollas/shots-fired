@@ -34,33 +34,45 @@ export class MasterChartComponent implements OnInit {
     })
   }
 
-  renderChart(data){
+  renderChart(apiData){
+
 
     const detailChartUpdates = this.chartService.getDetailChartUpdates();
+    let data = apiData.number_confirmed;
+    let allData = apiData;
     let detailStart;
 
     Highcharts.chart('master-container', {
       chart: {
-          reflow: false,
-          borderWidth: 0,
-          backgroundColor: null,
-          height:100,
-          zoomType: 'x',
-          events: {
-              selection: function (event) {
-                  var extremesObject = event.xAxis[0],
-                      min = extremesObject.min,
-                      max = extremesObject.max,
-                      detailData = [],
-                      xAxis = this.xAxis[0];
+        reflow: false,
+        borderWidth: 0,
+        backgroundColor: null,
+        height:100,
+        zoomType: 'x',
+        events: {
+            selection: function (event) {
+                var extremesObject = event.xAxis[0],
+                    min = extremesObject.min,
+                    max = extremesObject.max,
+                    detailData = {},
+                    xAxis = this.xAxis[0];
 
-                  // reverse engineer the last part of the data
-                  console.log(this.series);
-                  this.series[0].data.forEach(point => {
-                      if (point.x > min && point.x < max) {
-                          detailData.push([point.x, point.y]);
-                      }
-                  });
+                // reverse engineer the last part of the data
+                // this.series[0].data.forEach(point => {
+                //     console.log(point);
+                //     if (point.x > min && point.x < max) {
+                //         detailData.push([point.x, point.y]);
+                //     }
+                // });
+                for(const plotLine in apiData){
+                    let plotChunk = []
+                    apiData[plotLine].forEach(data => {
+                        if(data[0] > min && data[0] < max){
+                            plotChunk.push([data[0], data[1]])
+                        }
+                    })
+                    detailData[plotLine] = plotChunk;
+                }
 
                   // move the plot bands to reflect the new detail span
                   xAxis.removePlotBand('mask-before');
@@ -80,7 +92,17 @@ export class MasterChartComponent implements OnInit {
                   });
 
                   detailChartUpdates.subscribe(chart => {
-                    chart.series[0].setData(detailData)
+                    chart.series.forEach(series => {
+                        if(series.name === "Cases Tested"){
+                            series.setData(detailData["number_tested"])
+                        } else if(series.name === "Cases Confirmed"){
+                            series.setData(detailData["number_confirmed"])
+                        } else if(series.name === "Cases Hospitaized"){
+                            series.setData(detailData["number_hospitalized"])
+                        } else if(series.name === "Deaths"){
+                            series.setData(detailData["number_deaths"])
+                        }
+                    });
                   })
 
                   return false;

@@ -39,7 +39,18 @@ export class ApiService {
      )
   }
   getShootings(){
-    const url = "http://localhost:8000/shootings/"
+    const url = "http://localhost:8000/shootings"
+    return this.http.get<[]>(url).pipe(
+      tap((data) => console.log(data)),
+      catchError((error) => {
+         return of([]);
+       })
+     )
+  }
+
+  getShootingsPerDate(date: number){
+    const url = "http://localhost:8000/shootings?date="+ date;
+    console.log(url);
     return this.http.get<[]>(url).pipe(
       tap((data) => console.log(data)),
       catchError((error) => {

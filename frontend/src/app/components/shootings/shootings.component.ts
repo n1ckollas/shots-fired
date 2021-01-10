@@ -5,6 +5,7 @@ import { SimpleChartService } from 'src/app/services/chart.service';
 
 
 import * as Highcharts from 'highcharts';
+import { ShootingsService } from 'src/app/services/shootings.service';
 declare var require: any;
 let Boost = require('highcharts/modules/boost');
 let noData = require('highcharts/modules/no-data-to-display');
@@ -32,6 +33,7 @@ export class ShootingsComponent implements OnInit {
     private apiService: ApiService,
     private themeService: ThemeService,
     private chartService: SimpleChartService,
+    private shootings: ShootingsService,
   ) { }
   ngOnInit(): void {
     this.options = this.chartService.getOptions();
@@ -44,13 +46,20 @@ export class ShootingsComponent implements OnInit {
       center: {lat: 36.890257, lng: 30.707417},
       zoom: 12
     };
+
+    this.shootings.getStampUpdates().subscribe(stamp => {
+      if(stamp != null && stamp != undefined){
+        this.apiService.getShootingsPerDate(stamp).subscribe();
+      }
+    })
   }
 
   getData(){
     this.apiService.getShootings().subscribe(data => {
+      const pointStamp = this.shootings.getPointStamp();
       let incedents = { 
         type:'line',
-        name: 'Shootings: ',
+        name: 'Shootings',
         pointStart: data[0][0],
         pointInterval: 24 * 3600 * 1000,
         data: data,
@@ -62,8 +71,7 @@ export class ShootingsComponent implements OnInit {
           point: {
               events: {
                   click: function() {
-                    console.log(this.x);
-                    //get updates for a gived timestamp
+                    pointStamp.next(this.x);
                   }
               }
           }

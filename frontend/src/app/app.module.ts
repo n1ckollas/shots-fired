@@ -18,6 +18,7 @@ import { MasterChartComponent } from './components/md-chart/master-chart/master-
 import { DetailChartComponent } from './components/md-chart/detail-chart/detail-chart.component';
 import { SimpleChartService} from './services/chart.service';
 import { MasterChartService } from './services/master-chart.service';
+import { ShootingsComponent } from './components/shootings/shootings.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MasterChartService } from './services/master-chart.service';
     SlideBarComponent,
     MdChartComponent,
     MasterChartComponent,
-    DetailChartComponent
+    DetailChartComponent,
+    ShootingsComponent,
   ],
   imports: [
     BrowserModule,

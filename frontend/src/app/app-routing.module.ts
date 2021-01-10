@@ -3,11 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { ChartComponent } from './components/chart/chart.component';
 import { HomeComponent } from './components/home/home.component';
 import { MdChartComponent } from './components/md-chart/md-chart.component';
+import { ShootingsComponent } from './components/shootings/shootings.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   // {path:'deadliness', component},
-  {path:'shootings', component: ChartComponent},
+  {path:'shootings', component: ShootingsComponent},
   {path:'evictions', component: MdChartComponent},
 
 ];

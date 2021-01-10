@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem } from 'primeng-lts/api';
 import { SideBarService } from '../../services/side-bar.service';
 
 @Component({

@@ -18,7 +18,7 @@ export class SimpleChartService {
         color:"#000000"
       }
     },
-    colors:["#ff0000", "#0000ff", "#ff1aff", "#ff9900", "#00cc00",
+    colors:["#ff1aff", "#0000ff", "#ff9900", "#00cc00",
            "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"],
     
     title: {
@@ -109,7 +109,7 @@ export class SimpleChartService {
   }
 
   setDarkTheme(options){
-    options.colors = ["#ff0000", "#00ffff", "#ff1aff", "#ffff00", "#00cc00",
+    options.colors = ["#ff1aff", "#00ffff", "#ffff00", "#00cc00",
                             "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"],
     options.yAxis.lineColor = '#cecece';
     options.yAxis.tickColor = '#cecece';
@@ -126,7 +126,7 @@ export class SimpleChartService {
   }
 
   setLightTheme(options){
-    options.colors = ["#ff0000", "#0000ff", "#ff1aff", "#00e6e6", "#00cc00",
+    options.colors = ["#ff1aff", "#0000ff", "#00e6e6", "#00cc00",
                             "#f15c80", "#e4d354", "#2b908f", "#f45b5b", "#91e8e1"],
     options.yAxis.lineColor = '#000';
     options.yAxis.tickColor = '#000';

@@ -30,7 +30,6 @@ export class NaviComponent implements OnInit {
         },
         {
           label: 'Businesses Closed', 
-          url: 'businesses-closed',
         }
       ];
   }

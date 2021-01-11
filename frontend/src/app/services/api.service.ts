@@ -50,7 +50,6 @@ export class ApiService {
 
   getShootingsPerDate(date: number){
     const url = "http://localhost:8000/shootings?date="+ date;
-    console.log(url);
     return this.http.get<[]>(url).pipe(
       tap((data) => console.log(data)),
       catchError((error) => {

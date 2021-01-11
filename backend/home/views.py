@@ -106,10 +106,8 @@ class Shootings(APIView):
 
     def get(self, request):
         if "date" in request.query_params:
-            print("GET DIFFERENT API")
             date = request.query_params['date']
-            print(date)
-            data = client.get('5ucz-vwe8', select="*", where="'occur_date' > '2020-09-21T00:00:00.000'", limit=100)
+            data = client.get('5ucz-vwe8', where="occur_date = '2020-07-05T00:00:00.000'", limit=100)
             return Response(data)
         data = client.get('5ucz-vwe8', order="occur_date", limit=2000)
         series = []
